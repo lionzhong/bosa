@@ -1,7 +1,7 @@
 
 const config = () => {
 
-    return {
+    const configs = {
 
         "originalData": "D://work//bosa//origin",
         "compiledData": "D://work//bosa//compiled",
@@ -10,6 +10,8 @@ const config = () => {
         "originalExt": "txt"
 
     };
+
+    return configs;
 
 };
 

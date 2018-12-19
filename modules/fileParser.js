@@ -9,7 +9,7 @@ const doPrase = (filePath, fileName) => {
 
     if (fs.existsSync(filePath)) {
 
-        let originalData = fs.readFileSync(`${config.originalData}//${fileName}.${config.originalExt}`, 'utf-8');
+        let originalData = fs.readFileSync(path.join(config.originalData, `${fileName}.${config.originalExt}`), 'utf-8');
     
         originalData = originalData.split("\n");
     
@@ -156,7 +156,7 @@ const doPrase = (filePath, fileName) => {
     
             });
     
-            util.output.json(`${config.compiledData}//${fileName}.json`, result);
+            util.output.json(path.join(config.compiledData, `${fileName}.json`), result);
     
             saveCsv(result, fileName);
     

@@ -1,6 +1,8 @@
 const fs = require('fs');
 const json2csv = require('json2csv');
 const config  = require('../config');
+const log = require('./log');
+const path = require('path');
 // const Json2csvTransform = require('json2csv').Transform;
 // const util = require('../modules/util');
 
@@ -52,6 +54,7 @@ const generatorCsv = (sourceData, fileName) => {
     });
 
     try {
+
         const csv = json2csv.parse(csvData, {
             fields: fields,
             withBOM: true,
@@ -59,10 +62,12 @@ const generatorCsv = (sourceData, fileName) => {
             excelStrings: true
         });
 
-        fs.writeFile(`${config.csvData}//${fileName}.csv`, csv, function (err) {
+        const csvFile = path.join(config.csvData, `${fileName}.csv`);
+
+        fs.writeFile(csvFile, csv, function (err) {
 
             if (err) throw err;
-            console.log('file saved');
+            log.green(`${csvFile} 转换成功!`, true);
 
         });
 
