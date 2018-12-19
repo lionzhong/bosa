@@ -1,0 +1,15 @@
+{
+  "name": "bosa",
+  "version": "1.0.0",
+  "description": "航空乘客信息转换器",
+  "main": "index.js",
+  "repository": "https://github.com/lionzhong/bosa.git",
+  "author": "lionzhongtemp@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "csv-generate": "^3.2.0",
+    "json2csv": "^4.3.2",
+    "moment": "^2.23.0"
+  }
+}
