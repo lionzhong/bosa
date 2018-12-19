@@ -3,9 +3,11 @@ const config = () => {
 
     return {
 
-        "folder": "D://work//github_repo//bosa//data",
+        "originalData": "D://work//bosa//origin",
+        "compiledData": "D://work//bosa//compiled",
+        "csvData": "D://work//bosa//csv",
         "fileName": "original",
-        "fileType": "txt"
+        "originalExt": "txt"
 
     };
 

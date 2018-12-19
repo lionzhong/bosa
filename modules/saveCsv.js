@@ -1,8 +1,10 @@
-const fs                = require('fs');
-const Json2csvTransform = require('json2csv').Transform;
-const util              = require('../modules/util');
+const fs = require('fs');
+const json2csv = require('json2csv');
+const config  = require('../config');
+// const Json2csvTransform = require('json2csv').Transform;
+// const util = require('../modules/util');
 
-const generatorCsv = sourceData => {
+const generatorCsv = (sourceData, fileName) => {
 
     const defaultData = {
         "sort": -1,
@@ -49,15 +51,26 @@ const generatorCsv = sourceData => {
 
     });
 
-    util.output.json(`./data/temp/test.json`, csvData);
+    try {
+        const csv = json2csv.parse(csvData, {
+            fields: fields,
+            withBOM: true,
+            header: false,
+            excelStrings: true
+        });
 
-    const opts = { fields, withBOM: true, header: false, excelStrings: true };
-    const transformOpts = { highWaterMark: 16384, encoding: 'utf-8' };
-    const input     = fs.createReadStream(`./data/temp/test.json`, { encoding: 'utf8' });
-    const output    = fs.createWriteStream(`./data/csv/test.csv`, { encoding: 'utf8' });
-    const converter = new Json2csvTransform(opts, transformOpts);
+        fs.writeFile(`${config.csvData}//${fileName}.csv`, csv, function (err) {
 
-    input.pipe(converter).pipe(output);
+            if (err) throw err;
+            console.log('file saved');
+
+        });
+
+    } catch (err) {
+
+        console.error(err);
+
+    }
 
 };
 
