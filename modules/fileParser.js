@@ -3,8 +3,9 @@ const log = require('./log');
 const util = require('./util');
 const saveCsv = require('./saveCsv');
 const config = require('../config');
+const path = require('path');
 
-const fileParser = (filePath, fileName) => {
+const doPrase = (filePath, fileName) => {
 
     if (fs.existsSync(filePath)) {
 
@@ -169,27 +170,28 @@ const fileParser = (filePath, fileName) => {
 
 };
 
-const batchParser = () => {
+const batchParser = files => {
 
-    const path = require('path');
+    files.forEach(file => {
 
-    return new Promise((resolve, reject) => {
+        const originExt = `.${config.originalExt}`;
+
+        doPrase(path.join(config.originalData, file), file.replace(originExt, ""));
+
+    });
+    
+};
+
+module.exports = {
+    init: () => {
 
         fs.readdir(config.originalData, (err, files) => {
     
             if (!err) {
-        
-                Array.from(files, file => {
-        
-                    const originExt = `.${config.originalExt}`;
-        
-                    if (file.includes(originExt)) {
-        
-                        fileParser(path.join(config.originalData, file), file.replace(originExt, ""));
-        
-                    }
-        
-                });
+    
+                files = files.filter(file => file.endsWith(`.${config.originalExt}`));
+    
+                batchParser(files);
         
             } else {
         
@@ -198,9 +200,7 @@ const batchParser = () => {
             }
         
         });
-        
-    });
-    
-};
 
-module.exports = batchParser;
+    },
+    batch: batchParser
+};

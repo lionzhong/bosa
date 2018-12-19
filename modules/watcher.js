@@ -10,8 +10,8 @@ const watcher = () => {
     }, (eventType, filename) => {
     
         if (filename) {
-    
-            fileParser();
+
+            fileParser.init();
     
         }
     
