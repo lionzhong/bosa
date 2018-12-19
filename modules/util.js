@@ -72,8 +72,6 @@ const util = {
 
         }
 
-        console.log(moment(birthday).format("YYYY-MM-DD"));
-
         return moment(birthday).format("YYYY-MM-DD");
 
     },
