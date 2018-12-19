@@ -1,8 +1,5 @@
 node_module/
 node_modules/
-node_modules/**/*
-data/test.csv
-data/temp/test.json
-data/original/test.json
-data/original.txt
-data/csv/test.csv
+*.csv
+*.json
+*.txt
