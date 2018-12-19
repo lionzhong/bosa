@@ -1,7 +1,7 @@
 {
   "name": "bosa",
   "version": "1.0.0",
-  "description": "航空乘客信息转换器",
+  "description": "航空销售乘客数据转换器",
   "main": "index.js",
   "repository": "https://github.com/lionzhong/bosa.git",
   "author": "lionzhongtemp@gmail.com",
