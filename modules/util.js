@@ -59,7 +59,7 @@ const util = {
 
                 if (!fs.existsSync(folderPath)) {
 
-                    log.time(`路径不存在! ${folderPath} 开始创建路径`);
+                    log.time(`路径不存在! ${path.normalize(folderPath)} 开始创建路径`);
                 
                     const root = path.parse(folderPath).root;
                 
@@ -75,13 +75,13 @@ const util = {
                 
                                 if (!err) {
                 
-                                    resolve(`路径创建成功！${path}`, 2);
+                                    resolve(`路径创建成功! ${path}`, 2);
                 
                                 } else {
                 
-                                    log.red(`路径创建失败！${path}`, true);
+                                    log.red(`路径创建失败! ${path}`, true);
                                     console.error(err);
-                                    reject(err, `路径创建失败！${path}`);
+                                    reject(err, `路径创建失败! ${path}`);
 
                                     process.exit();
                 

@@ -5,8 +5,9 @@ const fileParser = require('./fileParser');
 const log        = require('./log');
 
 const watcher = () => {
-
+    
     let timer;
+    log.time(`开始监控原始数据目录 ${path.normalize(config.originalData)}`);
 
     const deBounce = files => {
 
