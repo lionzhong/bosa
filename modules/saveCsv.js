@@ -68,14 +68,14 @@ const generatorCsv = (sourceData, fileName) => {
 
             if (!err) {
 
-                log.green(`${csvFile} 转换成功!`, true);
+                log.green(`数据转换完成! ${csvFile} `, true);
 
             } else {
 
                 switch (err.errno) {
 
                     case -4082:
-                        log.red(`文件 ${csvFile} 转换失败。原因：文件正在被打开或锁死！`);
+                        log.red(`数据转换失败! ${csvFile} 原因: 文件正在被打开或锁死！`);
                         break;
                     default:
                         console.error(err);

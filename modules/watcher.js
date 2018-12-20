@@ -2,8 +2,26 @@ const fs         = require('fs');
 const path       = require('path');
 const config     = require('../config');
 const fileParser = require('./fileParser');
+const log        = require('./log');
 
 const watcher = () => {
+
+    let timer;
+
+    const deBounce = files => {
+
+        clearTimeout(timer);
+
+        timer = setTimeout(() => {
+
+            console.log("\n");
+            log.time(`监测到原始数据目录内有变化，开始数据转换! \n`);
+
+            fileParser.init();
+
+        }, 500);
+
+    };
 
     fs.watch(path.normalize(`${config.originalData}`), {
         encoding: 'utf-8'
@@ -11,7 +29,7 @@ const watcher = () => {
     
         if (filename) {
 
-            fileParser.init();
+            deBounce(filename);
     
         }
     
