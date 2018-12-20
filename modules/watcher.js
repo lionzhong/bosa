@@ -15,7 +15,7 @@ const watcher = () => {
         timer = setTimeout(() => {
 
             console.log("\n");
-            log.time(`监测到原始数据目录内有变化，开始数据转换! \n`);
+            log.time(`监测到原始数据目录内有变化，开始数据转换! ${config.originalData} \n`);
 
             fileParser.init();
 
@@ -30,7 +30,7 @@ const watcher = () => {
         if (filename) {
 
             deBounce(filename);
-    
+
         }
     
     });

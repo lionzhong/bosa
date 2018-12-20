@@ -75,7 +75,7 @@ const generatorCsv = (sourceData, fileName) => {
                 switch (err.errno) {
 
                     case -4082:
-                        log.red(`数据转换失败! ${csvFile} 原因: 文件正在被打开或锁死！`);
+                        log.red(`数据转换失败! ${csvFile} 原因: 文件无法保存，文件正在被打开或锁死！`, true);
                         break;
                     default:
                         console.error(err);
