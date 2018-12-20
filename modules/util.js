@@ -1,6 +1,6 @@
-const fs = require('fs');
+const fs     = require('fs');
 const moment = require('moment');
-const log = require('../modules/log');
+const log    = require('../modules/log');
 
 const util = {
     folder: {

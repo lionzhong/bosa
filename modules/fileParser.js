@@ -1,9 +1,9 @@
-const fs = require('fs');
-const log = require('./log');
-const util = require('./util');
+const fs      = require('fs');
+const log     = require('./log');
+const util    = require('./util');
 const saveCsv = require('./saveCsv');
-const config = require('../config');
-const path = require('path');
+const config  = require('../config');
+const path    = require('path');
 
 const doPrase = (filePath, fileName) => {
 
