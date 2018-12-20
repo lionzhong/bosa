@@ -66,8 +66,24 @@ const generatorCsv = (sourceData, fileName) => {
 
         fs.writeFile(csvFile, csv, function (err) {
 
-            if (err) throw err;
-            log.green(`${csvFile} 转换成功!`, true);
+            if (!err) {
+
+                log.green(`${csvFile} 转换成功!`, true);
+
+            } else {
+
+                switch (err.errno) {
+
+                    case -4082:
+                        log.red(`文件 ${csvFile} 转换失败。原因：文件正在被打开或锁死！`);
+                        break;
+                    default:
+                        console.error(err);
+                        break;
+
+                }
+
+            };
 
         });
 
