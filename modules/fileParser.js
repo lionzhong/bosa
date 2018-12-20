@@ -24,7 +24,7 @@ const doPrase = (filePath, fileName) => {
     
                 const isChild = ele.includes("儿童");
     
-                [/\n/g, /\d(.*?)[.]/, /\d(.*?)[。]/, /[.。]/, /[(](.*?)[)]/g, /[（](.*?)[）]/g, /[“”；，‘’！~@#￥%……&*（）——]/g].forEach(reg => {
+                [/\n/g, /^\d*/, /\d(.*?)[.]/, /\d(.*?)[。]/, /[.。]/, /[(](.*?)[)]/g, /[（](.*?)[）]/g, /[“”；，‘’！~@#￥%……&*（）——]/g].forEach(reg => {
     
                     ele = ele.replace(reg, "");
     
@@ -39,10 +39,10 @@ const doPrase = (filePath, fileName) => {
     
                 });
     
-                ele += ` ${isChild  ? "儿童" : ""} `;
-    
                 ele = ele.replace(/\s+/g, " ");
-    
+
+                ele = `${ele} ${isChild  ? "儿童" : ""}`;
+
                 ele = ele.trim();
     
                 return ele;
@@ -121,8 +121,16 @@ const doPrase = (filePath, fileName) => {
                 const obj = JSON.parse(JSON.stringify(defaultData));
     
                 data = data.replace(/\s+/g, " ").split(" ");
-    
-                obj.traveller_type = data.findIndex(str => str.includes("儿童")) > -1 ? "儿童" : "成人";
+
+                const isChild = data.findIndex(str => str.includes("儿童"));
+
+                obj.traveller_type = isChild > -1 ? "儿童" : "成人";
+
+                if (isChild > -1) {
+
+                    data.splice(isChild, 1);
+
+                }
     
                 [
                     "id",
