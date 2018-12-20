@@ -29,4 +29,4 @@ csv：
 originalData | 原始数据存放目录，也是会被监听的目录
 compiledData | 转换后的完整JSON数据
 csvData      | CSV文件存放目录
-originalExt  | txt
+originalExt  | 需要被监控的文件后缀，目前只支持txt
